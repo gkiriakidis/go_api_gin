@@ -1,5 +1,8 @@
 # go_api_gin
 
+This is an simple CRUD example to show how to use Gin as a router.
+So far, without the use of a database.
+For more detailed CRUD example (with Gorilla/Mux router) check: https://github.com/mnikolud/go_api
 
 ## Installation of Gin Web Framework
 
