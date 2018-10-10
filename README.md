@@ -26,4 +26,14 @@ import "github.com/gin-gonic/gin"
 import "net/http"
 ```
 
-## Other?
+## Start the CRUD API example:
+
+To start the example, you can run the following commands:
+
+1. Run in the working directory.
+
+```sh
+$ go run main.go
+```
+
+2. Use the commands via Postman (or whatever your soul desired). Ask for the link to import commands.
