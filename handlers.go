@@ -12,8 +12,18 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// Get All Fraud-Detection requests from Database.
+// Return All Fraud-Detection requests from Database.
 func fetchFraudDetectionRequests(c *gin.Context) {
+	// swagger:route GET /api/v1/payments/fraud-detection/ fetchFraudDetectionRequests
+	//
+	// Handler returning list of All Fraud-Detection requests from Database.
+	//
+	// List of All Fraud-Detection requests from Database
+	//
+	// Responses:
+	//   200: repoResp
+	//   403: forbidden
+
 	c.Header("Content-Type", "application/json")
 
 	// Read from Database:
@@ -27,6 +37,41 @@ func fetchFraudDetectionRequests(c *gin.Context) {
 
 // Get a single Fraud-Detection from the Database.
 func fetchFraudDetectionRequest(c *gin.Context) {
+	// swagger:operation GET /api/v1/payments/fraud-detection/{id} fetchFraudDetectionRequest
+	//
+	// Returns a single Fraud-Detection from the Database.
+	//
+	// Could be info for any Fraud-Detection...
+	//
+	// ---
+	// parameters:
+	// - name: id
+	//   in: path
+	//   description: optional filter to obtain statistics by proper country code in ISO 3166-1 numeric
+	//   type: integer
+	//   required: true
+	// responses:
+	//   '200':
+	//     description: "returns statistics about bought, only ordered, and returned products"
+	//     schema:
+	//       type: array
+	//       items:
+	//         type: object
+	//         properties:
+	//           title:
+	//             description: title of product
+	//             type: string
+	//           bought:
+	//             description: how many items of specific products were bought in the previous week
+	//             type: integer
+	//           ordered:
+	//             description: how many items of specific products were only ordered in the previous week
+	//             type: integer
+	//           returned:
+	//             description: how many items of specific products were returned in the previous week
+	//             type: integer
+	//         "required": ["bought", "returned", "ordered"]
+
 	// Read the input "id" param.
 	paramID := c.Param("id")
 
@@ -36,6 +81,34 @@ func fetchFraudDetectionRequest(c *gin.Context) {
 
 // Validate the Payment for possible Fraud
 func validatePayment(c *gin.Context) {
+	// swagger:operation POST /api/v1/payments/fraud-detection/ validatePaymentRequest
+	//
+	// validatePayment: Validate the Payment for possible Fraud
+	//
+	// Could be info for any Fraud-Detection...
+	//
+	// ---
+	// consumes:
+	// - application/x-www-form-urlencoded
+	// responses:
+	//   '200':
+	//     description: "returns statistics about bought, only ordered, and returned products"
+	//     schema:
+	//       type: array
+	//       items:
+	//         type: object
+	//         properties:
+	//           status:
+	//             description: the respose status
+	//             type: string
+	//           message:
+	//             description: the response message
+	//             type: string
+	//           resourceId:
+	//             description: the id of the new
+	//             type: string
+	//         "required": ["status", "message"]
+
 	// Read an Integer param (from POST)
 	// Atoi is used to convert string to int.
 	intParam1, err := strconv.Atoi(c.PostForm("intParam1"))
@@ -45,7 +118,7 @@ func validatePayment(c *gin.Context) {
 	}
 
 	// Read a String param (from POST)
-	strParam1 := c.PostForm("stParam1")
+	strParam1 := c.PostForm("strParam1")
 	if len(strParam1) == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"status": http.StatusBadRequest, "message": "StatusBadRequest"})
 		return
@@ -64,6 +137,48 @@ func validatePayment(c *gin.Context) {
 
 // Update the details of an Fraud-Detection.
 func updateFraudDetectionRequests(c *gin.Context) {
+	// swagger:operation PUT /api/v1/payments/fraud-detection/ updateFraudDetectionRequests
+	//
+	// updateFraudDetectionRequests: Update the details of an Fraud-Detection.
+	//
+	// Could be info for any Fraud-Detection...
+	//
+	// ---
+	// parameters:
+	// - name: resourceId
+	//   in: query
+	//   description: required parameter with desctiption
+	//   type: integer
+	// responses:
+	//   '200':
+	//     description: "returns statistics about bought, only ordered, and returned products"
+	//     schema:
+	//       type: array
+	//       items:
+	//         type: object
+	//         properties:
+	//           status:
+	//             description: the respose status
+	//             type: string
+	//           message:
+	//             description: the response message
+	//             type: string
+	//         "required": ["status", "message"]
+	//   '404':
+	//     description: "Not found"
+	//     schema:
+	//       type: array
+	//       items:
+	//         type: object
+	//         properties:
+	//           status:
+	//             description: the respose status
+	//             type: string
+	//           message:
+	//             description: the response message
+	//             type: string
+	//         "required": ["status", "message"]
+
 	// Read input params just like in the validatePayment
 	// ?
 
@@ -75,6 +190,48 @@ func updateFraudDetectionRequests(c *gin.Context) {
 
 // Delete a Fraud-Detection.
 func deleteFraudDetectionRequests(c *gin.Context) {
+	// swagger:operation DELETE /api/v1/payments/fraud-detection/ deleteFraudDetectionRequests
+	//
+	// deleteFraudDetectionRequests: Delete a Fraud-Detection.
+	//
+	// Could be info for any Fraud-Detection...
+	//
+	// ---
+	// parameters:
+	// - name: resourceId
+	//   in: query
+	//   description: required parameter with desctiption
+	//   type: integer
+	// responses:
+	//   '200':
+	//     description: "returns statistics about bought, only ordered, and returned products"
+	//     schema:
+	//       type: array
+	//       items:
+	//         type: object
+	//         properties:
+	//           status:
+	//             description: the respose status
+	//             type: string
+	//           message:
+	//             description: the response message
+	//             type: string
+	//         "required": ["status", "message"]
+	//   '404':
+	//     description: "Not found"
+	//     schema:
+	//       type: array
+	//       items:
+	//         type: object
+	//         properties:
+	//           status:
+	//             description: the respose status
+	//             type: string
+	//           message:
+	//             description: the response message
+	//             type: string
+	//         "required": ["status", "message"]
+
 	// Read input params just like in the validatePayment
 	// ?
 

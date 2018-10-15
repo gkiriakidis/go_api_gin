@@ -1,0 +1,304 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "description": "The purpose of this application is to provide examples\nuse cases describing how to create a CRUD API, use unit testing,\ncreate automated documentation, and much, much more... stay tuned...",
+    "title": "go-api-gin example.",
+    "version": "0.0.1"
+  },
+  "host": "127.0.0.1:8080",
+  "basePath": "/",
+  "paths": {
+    "/api/v1/payments/fraud-detection/": {
+      "get": {
+        "description": "List of All Fraud-Detection requests from Database",
+        "summary": "Handler returning list of All Fraud-Detection requests from Database.",
+        "operationId": "fetchFraudDetectionRequests",
+        "responses": {
+          "200": {
+            "$ref": "#/responses/repoResp"
+          },
+          "403": {
+            "$ref": "#/responses/forbidden"
+          }
+        }
+      },
+      "put": {
+        "description": "Could be info for any Fraud-Detection...",
+        "summary": "updateFraudDetectionRequests: Update the details of an Fraud-Detection.",
+        "operationId": "updateFraudDetectionRequests",
+        "parameters": [
+          {
+            "type": "integer",
+            "description": "required parameter with desctiption",
+            "name": "resourceId",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "returns statistics about bought, only ordered, and returned products",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "status",
+                  "message"
+                ],
+                "properties": {
+                  "message": {
+                    "description": "the response message",
+                    "type": "string"
+                  },
+                  "status": {
+                    "description": "the respose status",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "status",
+                  "message"
+                ],
+                "properties": {
+                  "message": {
+                    "description": "the response message",
+                    "type": "string"
+                  },
+                  "status": {
+                    "description": "the respose status",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Could be info for any Fraud-Detection...",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "summary": "validatePayment: Validate the Payment for possible Fraud",
+        "operationId": "validatePaymentRequest",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "IntParam1",
+            "description": "The intParam1 of user",
+            "name": "intParam1",
+            "in": "formData",
+            "required": true
+          },
+          {
+            "type": "string",
+            "x-go-name": "StrParam1",
+            "description": "The stParam1 of user",
+            "name": "strParam1",
+            "in": "formData"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "returns statistics about bought, only ordered, and returned products",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "status",
+                  "message"
+                ],
+                "properties": {
+                  "message": {
+                    "description": "the response message",
+                    "type": "string"
+                  },
+                  "resourceId": {
+                    "description": "the id of the new",
+                    "type": "string"
+                  },
+                  "status": {
+                    "description": "the respose status",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Could be info for any Fraud-Detection...",
+        "summary": "deleteFraudDetectionRequests: Delete a Fraud-Detection.",
+        "operationId": "deleteFraudDetectionRequests",
+        "parameters": [
+          {
+            "type": "integer",
+            "description": "required parameter with desctiption",
+            "name": "resourceId",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "returns statistics about bought, only ordered, and returned products",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "status",
+                  "message"
+                ],
+                "properties": {
+                  "message": {
+                    "description": "the response message",
+                    "type": "string"
+                  },
+                  "status": {
+                    "description": "the respose status",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "status",
+                  "message"
+                ],
+                "properties": {
+                  "message": {
+                    "description": "the response message",
+                    "type": "string"
+                  },
+                  "status": {
+                    "description": "the respose status",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/payments/fraud-detection/{id}": {
+      "get": {
+        "description": "Could be info for any Fraud-Detection...",
+        "summary": "Returns a single Fraud-Detection from the Database.",
+        "operationId": "fetchFraudDetectionRequest",
+        "parameters": [
+          {
+            "type": "integer",
+            "description": "optional filter to obtain statistics by proper country code in ISO 3166-1 numeric",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "returns statistics about bought, only ordered, and returned products",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "bought",
+                  "returned",
+                  "ordered"
+                ],
+                "properties": {
+                  "bought": {
+                    "description": "how many items of specific products were bought in the previous week",
+                    "type": "integer"
+                  },
+                  "ordered": {
+                    "description": "how many items of specific products were only ordered in the previous week",
+                    "type": "integer"
+                  },
+                  "returned": {
+                    "description": "how many items of specific products were returned in the previous week",
+                    "type": "integer"
+                  },
+                  "title": {
+                    "description": "title of product",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "forbidden": {
+      "description": "Error Forbidden",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "description": "HTTP status code 403 -  Forbidden",
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "Code"
+          },
+          "message": {
+            "description": "Detailed error message",
+            "type": "string",
+            "x-go-name": "Message"
+          }
+        }
+      }
+    },
+    "repoResp": {
+      "description": "HTTP status code 200 and repository model in data",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "description": "HTTP status code 200/201",
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "Code"
+          },
+          "data": {
+            "description": "Repository Data",
+            "type": "string",
+            "x-go-name": "Data"
+          }
+        }
+      }
+    }
+  }
+}
